@@ -149,6 +149,6 @@ async def ask_get():
     raise HTTPException(status_code=405, detail="Method Not Allowed")
 
 
-@app.get("/healthz")
-async def healthz():
+@app.get("/health")
+async def health():
     return {"status": "ok"}
