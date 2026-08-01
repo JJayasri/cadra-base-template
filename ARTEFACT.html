@@ -2,12 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Artefact</title>
+  <title>Suryaa Sales Investigation — Analytical Findings Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
+    h1 { border-bottom: 2px solid #2563eb; padding-bottom: 10px; color: #1e3a5f; }
+    h2 { color: #2563eb; margin-top: 32px; }
+    h3 { color: #374151; }
+    table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+    th, td { border: 1px solid #d1d5db; padding: 8px 12px; text-align: left; }
+    th { background: #2563eb; color: white; }
+    tr:nth-child(even) { background: #f9fafb; }
+    strong { color: #1e3a5f; }
+    hr { border: none; border-top: 1px solid #d1d5db; margin: 32px 0; }
+    .summary { background: #eff6ff; padding: 16px 20px; border-radius: 8px; border-left: 4px solid #2563eb; margin: 20px 0; }
+  </style>
 </head>
 <body>
-  <p>
-    Fill this file with the written deliverable your problem brief asks for (for example, a
-    Reconciliation Report). The grader reads this exact file — do not rename or move it.
-  </p>
+
+<h1>Suryaa Sales Investigation — Analytical Findings Report</h1>
+
+<h2>Executive Summary</h2>
+<p>This report presents findings from the Suryaa Consumer Products Ltd FMCG sales data analysis. We analysed primary sales data (Jul 2025 – Jun 2026) across 15 brands, 4 product categories, 12 territories, and 24 distributors, augmented by 30 unstructured documents (emails, visit notes, circulars, policies). The analysis answers What / Why / What-to-do questions using a multi-agent AI assistant.</p>
+
+<hr>
+
+<h2>1. WHAT Analysis: GlucoJoy Monthly Sales vs Target — North Region, November 2025</h2>
+
+<h3>Query</h3>
+<p><em>"What were GlucoJoy's monthly primary sales vs target in the North region in November 2025?"</em></p>
+
+<h3>Result</h3>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Primary sales value</td><td>INR 861,938.25</td></tr>
+  <tr><td>Primary sales units</td><td>43,147 units</td></tr>
+  <tr><td>Target value</td><td>INR 1,026,116.06</td></tr>
+  <tr><td>Variance</td><td><strong>-16.0%</strong> (below target)</td></tr>
+</table>
+
+<h3>Interpretation</h3>
+<p>GlucoJoy underperformed against its North region target by 16% in November 2025. The North region comprises Delhi, Lucknow, and Jaipur territories. The shortfall suggests potential issues in distribution execution, competitor activity, or demand softness during this period.</p>
+
+<h3>Data Sources</h3>
+<ul>
+  <li><code>fact_primary_sales</code>: Weekly primary sales aggregated to monthly grain</li>
+  <li><code>fact_targets</code>: Monthly target values</li>
+  <li><code>dim_sku</code>: Brand mapping (GlucoJoy SKUs: GJ-001 through GJ-009)</li>
+  <li><code>dim_geo</code>: Region hierarchy (North → Delhi, Lucknow, Jaipur)</li>
+</ul>
+
+<hr>
+
+<h2>2. WHY Analysis: SparkClean 1kg Sales Spike — Mumbai, September 2025</h2>
+
+<h3>Query</h3>
+<p><em>"Why did SparkClean 1kg primary sales spike in Mumbai in the week of 16 Sep 2025?"</em></p>
+
+<h3>Finding</h3>
+<p>The sales spike is causally explained by a <strong>price-off promotion</strong> documented in the internal trade circular.</p>
+
+<h3>Evidence</h3>
+<table>
+  <tr><th>Evidence Source</th><th>Content</th></tr>
+  <tr><td><code>promo_circular_01</code></td><td>"SparkClean 1kg price-off promo in Mumbai w/c 16 Sep"</td></tr>
+  <tr><td><code>promotions</code> table</td><td>SC-004 (SparkClean Regular 1kg), territory Mumbai, promo_type=PriceOff, discount=15%, week_start=2025-09-16</td></tr>
+</table>
+
+<h3>Sales Data Correlation</h3>
+<p>SparkClean 1kg (SKUs SC-004, SC-005, SC-006) in Mumbai recorded INR 176,779 in sales during September 2025 across 2,773 units.</p>
+
+<hr>
+
+<h2>3. WHY Analysis: GlucoJoy Choco 120g Stockout — Delhi</h2>
+
+<h3>Query</h3>
+<p><em>"Why did GlucoJoy Choco 120g stockout in Delhi?"</em></p>
+
+<h3>Finding</h3>
+<p>The stockout was caused by a <strong>supplier delay</strong>, compounded by a <strong>Diwali supply shortfall</strong> in the North region.</p>
+
+<h3>Evidence</h3>
+<table>
+  <tr><th>Evidence Source</th><th>Content</th></tr>
+  <tr><td><code>email_01</code></td><td>"supplier delay caused GlucoJoy Choco 120g stockout in Delhi"</td></tr>
+  <tr><td><code>email_02</code></td><td>"GlucoJoy Choco 120g supply shortfall during Diwali peak in North"</td></tr>
+</table>
+
+<hr>
+
+<h2>4. Cross-Cutting Observations</h2>
+
+<h3>Data Quality Issues Identified</h3>
+<ol>
+  <li><strong>Date format inconsistencies</strong>: Multiple formats in the same column</li>
+  <li><strong>Column name inconsistencies</strong>: Same product identifier named differently across tables</li>
+  <li><strong>Sentinel values</strong>: #N/A, -1, 9999 used as sentinels</li>
+  <li><strong>Currency formatting</strong>: Plain numbers, comma-separated, Rs-prefixed, quoted variants</li>
+  <li><strong>Territory aliases</strong>: Bombay/BLR used interchangeably</li>
+  <li><strong>Duplicate SKU entries</strong>: Lowercase/uppercase duplicates in dim_sku</li>
+</ol>
+
+<h3>Methodology</h3>
+<p>Data loaded from 8 CSV files, cleaned through a pipeline normalizing column names, dates, sentinel values, and geographical aliases. Intent-specific agents (WHAT, WHY, WHAT_TO_DO) query the cleaned data and return evidence-grounded answers. Confidence thresholds determine status: OK (&ge;0.7), PENDING_APPROVAL (0.3–0.7), ABSTAINED (&lt;0.3).</p>
+
+<hr>
+<p><em>Report generated by the Suryaa Sales Assistant AI — August 2026</em></p>
+
 </body>
 </html>
