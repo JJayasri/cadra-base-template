@@ -3,7 +3,7 @@
 Starter repository for the Cadra F1 walking-skeleton capstone. Implements a production-grade multi-agent assistant answering WHAT / WHY / WHAT_TO_DO questions over 8 CSV tables and 30 unstructured documents from Suryaa Consumer Products Ltd (Indian FMCG).
 
 **Repository**: https://github.com/JJayasri/cadra-base-template
-**Live HTTPS endpoint**: `https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask`
+**Live HTTPS endpoint**: `https://cadra-base-template.onrender.com/ask`
 
 ---
 
@@ -116,7 +116,7 @@ curl -s -w '\nHTTP %{http_code}\n' http://127.0.0.1:8000/ask
 Repeat Step 8 using the live HTTPS URL:
 
 ```bash
-BASE="https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app"
+BASE="https://cadra-base-template.onrender.com"
 curl -s -X POST "$BASE/ask" -H 'Content-Type: application/json' \
   -d '{"question":"What were the sales for July 2025?"}'
 ```

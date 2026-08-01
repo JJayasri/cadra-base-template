@@ -86,4 +86,4 @@ The `primary_sales_units` column in the source data is recorded at the **individ
   - GlucoJoy North Nov 2025: INR 861,938.25 sales vs INR 1,026,116.06 target (-16.0%)
   - SparkClean 1kg Mumbai Sep 2025: INR 176,779.00 sales (2,773 units)
 - WHAT_TO_DO recommendations always return `status: PENDING_APPROVAL` per assignment spec (recommendations require human approval before action).
-- Live HTTPS endpoint: `https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask`
+- Live HTTPS endpoint: `https://cadra-base-template.onrender.com/ask`

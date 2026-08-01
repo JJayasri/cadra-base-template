@@ -2,9 +2,9 @@
 
 ## Live Endpoint (ngrok)
 
-**Base URL**: `https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app`
+**Base URL**: `https://cadra-base-template.onrender.com`
 
-**Note**: ngrok URLs are temporary. The URL above is valid only while the tunnel session is active. If the endpoint stops responding, re-run `ngrok http 8008` to get a new URL.
+**Note**: This is a permanent Render deployment. No tunnel setup needed.
 
 ---
 
@@ -13,7 +13,7 @@
 ### 1. Quick test (any terminal)
 
 ```bash
-curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask" \
+curl -s -X POST "https://cadra-base-template.onrender.com/ask" \
   -H 'Content-Type: application/json' \
   -d '{"question":"test"}'
 ```
@@ -26,7 +26,7 @@ Expected output:
 ### 2. WHAT query (aggregated sales data)
 
 ```bash
-curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask" \
+curl -s -X POST "https://cadra-base-template.onrender.com/ask" \
   -H 'Content-Type: application/json' \
   -d '{"question":"What were GlucoJoy'\''s monthly primary sales vs target in the North region in November 2025?"}'
 ```
@@ -34,7 +34,7 @@ curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.
 ### 3. WHY query (causal analysis)
 
 ```bash
-curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask" \
+curl -s -X POST "https://cadra-base-template.onrender.com/ask" \
   -H 'Content-Type: application/json' \
   -d '{"question":"Why did SparkClean 1kg primary sales spike in Mumbai in the week of 16 Sep 2025?"}'
 ```
@@ -42,7 +42,7 @@ curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.
 ### 4. WHAT_TO_DO query (recommendations)
 
 ```bash
-curl -s -X POST "https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask" \
+curl -s -X POST "https://cadra-base-template.onrender.com/ask" \
   -H 'Content-Type: application/json' \
   -d '{"question":"What should we do about the stockout in Chennai?"}'
 ```
