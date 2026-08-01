@@ -147,3 +147,8 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 @app.get("/ask")
 async def ask_get():
     raise HTTPException(status_code=405, detail="Method Not Allowed")
+
+
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
