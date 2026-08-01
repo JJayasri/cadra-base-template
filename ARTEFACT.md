@@ -129,7 +129,7 @@ Data was loaded from 8 CSV files into pandas DataFrames, cleaned through a pipel
 2. **WHY Agent**: Retrieves relevant documents via keyword search, correlates findings with sales data, returns evidence-grounded explanations
 3. **WHAT_TO_DO Agent**: Gathers evidence from docs and data, generates recommendations with per-item confidence scores
 
-All answers are grounded exclusively in the provided data. Confidence thresholds determine response status: OK (≥0.7), PENDING_APPROVAL (0.3–0.7), ABSTAINED (<0.3).
+All answers are grounded exclusively in the provided data. Confidence thresholds determine response status: OK (≥0.7) for WHAT/WHY, PENDING_APPROVAL (always, per spec) for WHAT_TO_DO, ABSTAINED (<0.3) when unanswerable.
 
 ---
 

@@ -73,11 +73,13 @@ The solution supports four analytical question types, each with a specific struc
 
 ### Confidence / Status mapping
 
-| Confidence Range | Status | Meaning |
-|---|---|---|
-| ≥ 0.7 | OK | Strong evidence, answer is reliable |
-| 0.3 – 0.7 | PENDING_APPROVAL | Moderate evidence, human review recommended |
-| < 0.3 | ABSTAINED | Insufficient evidence, cannot answer |
+| Confidence Range | Status | When Used | Meaning |
+|---|---|---|---|
+| ≥ 0.7 | OK | WHAT, WHY | Strong evidence, answer is reliable |
+| 0.3 – 0.7 | PENDING_APPROVAL | WHAT_TO_DO (always), WHY (moderate) | Per spec, recommendations always require human approval |
+| < 0.3 | ABSTAINED | All intents | Insufficient evidence, cannot answer |
+
+**Spec requirement**: WHAT_TO_DO always returns `status: PENDING_APPROVAL` regardless of confidence — a recommendation is never returned as final `status: OK`. It always requires human approval before being treated as actioned.
 
 ---
 

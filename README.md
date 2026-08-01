@@ -2,6 +2,12 @@
 
 Starter repository for the Cadra F1 walking-skeleton capstone. Use OpenCode with the Cadra provider to build your solution, document your approach, and submit a public GitHub repo for evaluation.
 
+## Deployed Endpoint
+
+**HTTPS URL**: `https://fb6f-2405-201-c03a-800a-28f7-8d0a-43fa-e1ea.ngrok-free.app/ask`
+
+See [USAGE.md](USAGE.md) for API examples and curl commands.
+
 ## Prerequisites
 
 - Python 3.11+
@@ -39,10 +45,38 @@ pip install -r requirements.txt
 
 ```
 .
-├── opencode.json    # Cadra provider config (reads CADRA_PROXY_URL + CADRA_TOKEN from env)
-├── APPROACH.md      # Your written approach (required for submission)
+├── opencode.json           # Cadra provider config
+├── APPROACH.md             # Approach document (Sections A-D)
+├── ARTEFACT.md             # Written deliverable / findings report
+├── ARTEFACT.html           # HTML version of deliverable
+├── RECONCILIATION.md       # Reconciliation report
+├── USAGE.md                # Deployment & API usage guide
+├── transcripts/
+│   ├── approach_phase.md   # AI chat transcripts (approach)
+│   └── build_phase.md      # AI chat transcripts (build)
 ├── src/
-│   └── solution.py  # Your solution code
-├── requirements.txt
-└── README.md
+│   ├── app.py              # FastAPI application
+│   ├── solution.py         # Entry point (uvicorn runner)
+│   ├── agents/
+│   │   ├── router.py       # Intent classifier
+│   │   ├── what_agent.py   # WHAT aggregation engine
+│   │   ├── why_agent.py    # WHY causal analysis
+│   │   └── what_to_do_agent.py  # WHAT_TO_DO recommendations
+│   └── data/
+│       ├── loader.py       # CSV loader + cache
+│       ├── cleaner.py      # Data cleaning pipeline
+│       └── doc_retriever.py # Document search engine
+├── tests/                  # 212 pytest tests
+├── evals/run.py            # Evaluation harness (11 cases)
+├── Data/                   # Source data (8 CSVs + 30 docs)
+└── requirements.txt
+```
+
+## Verification
+
+```bash
+source .venv/bin/activate
+python -m pytest tests/          # 212 tests
+python evals/run.py              # 11 eval cases
+python -m src.solution           # Start API server
 ```
